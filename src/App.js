@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit the file <code>src/App.js</code> and blah blah save to PHODA BE reload.
+          This file has been changed!
         </p>
         <a
           className="App-link"
