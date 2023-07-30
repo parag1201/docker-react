@@ -6,6 +6,8 @@ COPY . .
 RUN npm run build
 
 FROM nginx
+# This port 80 is used by AWS to do port mapping.
+EXPOSE 80
 # this /usr/share/nginx/html is the default location from where nginx serves the content.
 COPY --from=builder /app/build /usr/share/nginx/html
 
