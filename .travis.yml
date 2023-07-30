@@ -6,4 +6,16 @@ before_install:
   - docker build -t spider/docker-react -f Dockerfile.dev .
 
 script:
-  -  docker run -e CI=true spider/docker-react npm run test -- --coverage
+  - docker run -e CI=true spider/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "docker-react"
+  env: "Docker-react-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-473096381257" #travis CI will zip all our code and upload it to S3.
+  bucket_path: "docker-react" #application folder name inside S3 bucket
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY # Have setup these global env variables in settings in travis CI
+  secret_access_key: "$AWS_SECRET_KEY"
